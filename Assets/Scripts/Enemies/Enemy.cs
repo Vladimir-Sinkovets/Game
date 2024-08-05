@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Enemies
 {
@@ -6,12 +7,6 @@ namespace Assets.Scripts.Enemies
     {
         [SerializeField] private float _speed;
 
-        public void MoveTo(Vector3 target)
-        {
-            var heading = target - transform.position;
-            var direction = heading / heading.magnitude;
-
-            transform.Translate(heading * _speed);
-        }
+        public float Speed { get => _speed; }
     }
 }
