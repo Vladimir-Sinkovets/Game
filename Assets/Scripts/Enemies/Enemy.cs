@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.PlayerComponents;
+using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Enemies
 {
@@ -6,10 +8,19 @@ namespace Assets.Scripts.Enemies
     {
         private float _speed;
         private int _hp;
+        private Player _player;
+
         public float Speed { get => _speed; }
-        public virtual void Move(Vector3 target)
+
+        [Inject]
+        private void Construct(Player player)
         {
-            var direction = target - transform.position;
+            _player = player;
+        }
+
+        public virtual void Update()
+        {
+            var direction = _player.transform.position - transform.position;
 
             var distance = direction.magnitude;
 

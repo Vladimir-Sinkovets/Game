@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Enemies;
-using Assets.Scripts.Services.EnemyAccessor;
 using Assets.Scripts.Settings;
 using UnityEngine;
 using Zenject;
@@ -10,7 +9,6 @@ namespace Assets.Scripts.Services.EnemySpawner
     {
         private SpawnerSettings _settings;
         private DiContainer _container;
-        private IEnemyStorage _enemyStorage;
         private System.Random _random = new();
 
 
@@ -23,11 +21,10 @@ namespace Assets.Scripts.Services.EnemySpawner
         private float _nextSpawnTime;
 
         [Inject]
-        public void Construct(SpawnerSettings settings, DiContainer container, IEnemyStorage enemyStorage)
+        public void Construct(SpawnerSettings settings, DiContainer container)
         {
             _settings = settings;
             _container = container;
-            _enemyStorage = enemyStorage;
         }
 
         public void Initialize()
@@ -54,8 +51,6 @@ namespace Assets.Scripts.Services.EnemySpawner
             Enemy enemy = GetRandomEnemyFromCurrentLevel();
 
             enemy.transform.position = position;
-
-            _enemyStorage.Add(enemy);
         }
 
         private Enemy GetRandomEnemyFromCurrentLevel()
