@@ -1,7 +1,9 @@
+using Assets.Scripts.Factories.ProjectileFactories;
 using Assets.Scripts.PlayerComponents;
-using Assets.Scripts.Services.Controller;
+using Assets.Scripts.Services.Controllers;
 using Assets.Scripts.Services.EnemyAccessor;
 using Assets.Scripts.Services.EnemySpawner;
+using Assets.Scripts.Services.ProjectileAccessor;
 using Assets.Scripts.Settings;
 using UnityEngine;
 using Zenject;
@@ -13,9 +15,16 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private EnemiesController _enemiesController;
     [SerializeField] private Player _player;
+    [SerializeField] private ProjectileFactory _projectileFactory;
 
     public override void InstallBindings()
     {
+        Container.BindInterfacesAndSelfTo<ProjectileStorage>()
+            .AsSingle();
+
+        Container.BindInterfacesAndSelfTo<ProjectilesMover>()
+            .AsSingle();
+
         Container.Bind<FixedJoystick>()
             .FromInstance(_joystick);
 
@@ -24,6 +33,9 @@ public class GameInstaller : MonoInstaller
 
         Container.Bind<SpawnerSettings>()
             .FromInstance(_spawnerSettings);
+        
+        Container.Bind<ProjectileFactory>()
+            .FromInstance(_projectileFactory);
 
         Container.Bind<IEnemiesController>()
             .To<EnemiesController>()
@@ -33,7 +45,7 @@ public class GameInstaller : MonoInstaller
             .To<EnemyStorage>()
             .AsSingle();
 
-        Container.Bind<Player>()
+        Container.BindInterfacesAndSelfTo<Player>()
             .FromInstance(_player);
     }
 }

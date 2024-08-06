@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Services.Controller
+namespace Assets.Scripts.Services.Controllers
 {
     public class EnemiesController : MonoBehaviour, IEnemiesController
     {
