@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Services.EnemiesController
+namespace Assets.Scripts.Services.Controller
 {
-    public class EnemiesController : MonoBehaviour
+    public class EnemiesController : MonoBehaviour, IEnemiesController
     {
-        [SerializeField] private List<Enemy> _enemies;
+        private List<Enemy> _enemies = new();
+
         [SerializeField] private Transform _target;
 
         private void Update()
@@ -30,5 +31,7 @@ namespace Assets.Scripts.Services.EnemiesController
 
             enemy.transform.Translate(enemy.Speed * Time.deltaTime * normalizedDirection);
         }
+
+        public void Add(Enemy enemy) => _enemies.Add(enemy);
     }
 }
