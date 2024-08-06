@@ -24,22 +24,8 @@ namespace Assets.Scripts.Services.Controller
         {
             foreach (Enemy enemy in Enemies)
             {
-                Move(_target.position, enemy);
+                enemy.Move(_target.position);
             }
-        }
-
-        private void Move(Vector3 target, Enemy enemy)
-        {
-            var direction = target - enemy.transform.position;
-
-            var distance = direction.magnitude;
-            
-            var normalizedDirection = direction / distance;
-
-            if (distance < 1)
-                return;
-
-            enemy.transform.Translate(enemy.Speed * Time.deltaTime * normalizedDirection);
         }
     }
 }
