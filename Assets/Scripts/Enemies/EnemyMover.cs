@@ -7,7 +7,7 @@ namespace Assets.Scripts.Enemies
 {
     public class EnemyMover : MonoBehaviour
     {
-        public event Action OnTargetReached;
+        public event Action<Player> OnTargetReached;
 
         private float _speed;
         private Player _player;
@@ -36,7 +36,7 @@ namespace Assets.Scripts.Enemies
 
             if (distance < 1)
             {
-                OnTargetReached.Invoke();
+                OnTargetReached.Invoke(_player);
 
                 return;
             }

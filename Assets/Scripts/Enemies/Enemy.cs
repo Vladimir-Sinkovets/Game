@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Assets.Scripts.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemies
@@ -31,14 +31,15 @@ namespace Assets.Scripts.Enemies
             Destroy(gameObject);
         }
 
-        private void OnTargetReachedHandler()
+        private void OnTargetReachedHandler(Player player)
         {
             if (_nextHitTime > Time.time)
                 return;
 
             _nextHitTime = Time.time + _timeBetweenHits;
 
-            //_player.MakeDamage(_damage);
+            player.GetComponent<Health>()
+                .MakeDamage(_damage);
         }
     }
 }

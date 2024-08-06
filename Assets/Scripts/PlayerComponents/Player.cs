@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Enemies;
 using Assets.Scripts.PlayerComponents.Abilities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,7 +12,10 @@ namespace Assets.Scripts.PlayerComponents
         [SerializeField] private int _hp = 100;
 
         private readonly List<IAbility> _abilities = new List<IAbility>();
+
         private DiContainer _diContainer;
+
+        private Health _health;
 
         [Inject]
         private void Construct(DiContainer diContainer)
@@ -24,6 +26,14 @@ namespace Assets.Scripts.PlayerComponents
         public void Initialize()
         {
             _abilities.Add(_diContainer.Instantiate<DefaultAttack>());
+            _health = GetComponent<Health>();
+            _health.Init(_hp);
+            _health.OnHpEnded += OnHpEndedHandler;
+        }
+
+        private void OnHpEndedHandler()
+        {
+            Debug.Log("player died");
         }
 
         private void Update()
@@ -45,19 +55,6 @@ namespace Assets.Scripts.PlayerComponents
             return enemies
                 .Last()
                 .GetComponent<Enemy>();
-        }
-
-        public void MakeDamage(int damage)
-        {
-            _hp -= damage;
-
-            if (_hp < 0)
-                Die();
-        }
-
-        private void Die()
-        {
-            Debug.Log("player died");
         }
     }
 }
