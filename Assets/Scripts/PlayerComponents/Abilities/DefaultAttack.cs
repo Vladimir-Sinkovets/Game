@@ -26,9 +26,9 @@ namespace Assets.Scripts.PlayerComponents.Abilities
         {
             if (_nextAttackTime <= Time.time)
             {
-                Attack();
-
                 _nextAttackTime = Time.time + _timeBetweenAttacks;
+
+                Attack();
             }
         }
 
@@ -36,7 +36,12 @@ namespace Assets.Scripts.PlayerComponents.Abilities
         {
             var projectile = _projectileFactory.Get(_diContainer);
 
-            projectile.SetDirection(Vector2.left);
+            var target = _player.GetNearestObject();
+
+            if (target == null)
+                return;
+
+            projectile.SetDirection(target.transform.position - _player.transform.position);
             projectile.SetPosition(_player.transform.position);
         }
     }

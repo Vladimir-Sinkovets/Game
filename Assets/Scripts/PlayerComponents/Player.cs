@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.PlayerComponents.Abilities;
+﻿using Assets.Scripts.Enemies;
+using Assets.Scripts.PlayerComponents.Abilities;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -28,6 +30,19 @@ namespace Assets.Scripts.PlayerComponents
             {
                 ability.Update();
             }
+        }
+
+        public Enemy GetNearestObject()
+        {
+            var enemies = Physics2D.OverlapCircleAll(transform.position, 6, LayerMask.GetMask("Enemy"))
+                .Where(x => x.TryGetComponent(out Enemy enemy));
+
+            if (enemies.Count() == 0)
+                return null;
+
+            return enemies
+                .Last()
+                .GetComponent<Enemy>();
         }
     }
 }

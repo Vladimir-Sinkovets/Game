@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enemies;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -15,10 +16,18 @@ namespace Assets.Scripts.Factories.EnemyFactories
         {
             var enemy = container.InstantiateComponentOnNewGameObject<Enemy>();
             enemy.Init(_speed, _hp);
+            enemy.gameObject.layer = LayerMask.NameToLayer("Enemy");
 
             var spriteRenderer = container.InstantiateComponentOnNewGameObject<SpriteRenderer>();
             spriteRenderer.sprite = _sprite;
             spriteRenderer.transform.SetParent(enemy.transform);
+
+            var collider = enemy.AddComponent<CircleCollider2D>();
+            collider.radius = 0.5f;
+
+            var rb = enemy.AddComponent<Rigidbody2D>();
+            rb.isKinematic = true;
+
 
             return enemy;
         }

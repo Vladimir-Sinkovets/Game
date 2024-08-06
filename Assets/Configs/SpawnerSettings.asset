@@ -16,4 +16,4 @@ MonoBehaviour:
   - _enemyFactories:
     - {fileID: 11400000, guid: 339b7ad54dbca7c4c9208b2b7c5e716d, type: 2}
     - {fileID: 11400000, guid: 0561a5870e1c48645b83ff97e00c9ed9, type: 2}
-  _spawnRate: 1
+  _spawnRate: 0.1

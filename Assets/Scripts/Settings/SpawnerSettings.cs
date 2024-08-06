@@ -7,9 +7,9 @@ namespace Assets.Scripts.Settings
     public class SpawnerSettings : ScriptableObject
     {
         [SerializeField] private List<SpawnLevel> _spawnSettings;
-        [SerializeField] private int _spawnRate = 2;
+        [SerializeField] private float _spawnRate = 2;
 
         public IList<SpawnLevel> SpawnSettings { get => _spawnSettings; }
-        public int SpawnRate { get => _spawnRate; }
+        public float SpawnRate { get => _spawnRate; }
     }
 }

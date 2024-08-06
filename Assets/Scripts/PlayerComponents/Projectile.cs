@@ -26,7 +26,7 @@ namespace Assets.Scripts.PlayerComponents
         {
             if (_lifeTime <= _time)
             {
-                Destroy(gameObject);
+                Die();
             }
 
             _time += Time.deltaTime;
@@ -38,10 +38,21 @@ namespace Assets.Scripts.PlayerComponents
         {
             _direction = direction.normalized;
         }
-
         public void SetPosition(Vector3 position)
         {
             transform.position = position;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Die();
+
+            Debug.Log("Died");
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }
