@@ -50,6 +50,7 @@ namespace Assets.Scripts.Enemies
 
         private void Die()
         {
+            Destroy(gameObject);
         }
     }
 }
