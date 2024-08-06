@@ -46,12 +46,12 @@ namespace Assets.Scripts.PlayerComponents
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            var isEnemy = collision.TryGetComponent<Enemy>(out var enemy);
+            var isHealthComponent = collision.TryGetComponent<Health>(out var health);
 
-            if (isEnemy == false)
+            if (isHealthComponent == false)
                 return;
 
-            enemy.MakeDamage(_damage);
+            health.MakeDamage(_damage);
 
             Die();
         }

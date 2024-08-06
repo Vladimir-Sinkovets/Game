@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a51e89e1e623b4ebabbf3e1b253a0e, type: 3}
   m_Name: DefaultEnemyFactory 1
   m_EditorClassIdentifier: 
+  _prefab: {fileID: 5159165526323256225, guid: 97ec137d10a8b874695f0fd340f2da8f, type: 3}
   _hp: 13
   _sprite: {fileID: -1893688165, guid: 0e1a5a745be473e4a90da700bf1c148e, type: 3}
   _speed: 1
   _damage: 1
-  _colliderRadius: 0.25
   _timeBetweenHits: 1
