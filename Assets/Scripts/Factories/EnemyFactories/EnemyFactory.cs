@@ -8,9 +8,10 @@ namespace Assets.Scripts.Factories.EnemyFactories
     [CreateAssetMenu(fileName = "EnemyFactory", menuName = "Configs/EnemyFactory")]
     public class EnemyFactory : ScriptableObject
     {
-        [SerializeField] protected int _hp;
+        [SerializeField] protected int _hp = 10;
         [SerializeField] protected Sprite _sprite;
-        [SerializeField] protected float _speed;
+        [SerializeField] protected float _speed = 2.0f;
+        [SerializeField] protected float _colliderRadius = 0.5f;
 
         public virtual Enemy Get(DiContainer container)
         {
@@ -18,16 +19,15 @@ namespace Assets.Scripts.Factories.EnemyFactories
             enemy.Init(_speed, _hp);
             enemy.gameObject.layer = LayerMask.NameToLayer("Enemy");
 
-            var spriteRenderer = container.InstantiateComponentOnNewGameObject<SpriteRenderer>();
+            var spriteRenderer = enemy.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = _sprite;
             spriteRenderer.transform.SetParent(enemy.transform);
 
             var collider = enemy.AddComponent<CircleCollider2D>();
-            collider.radius = 0.5f;
+            collider.radius = _colliderRadius;
 
             var rb = enemy.AddComponent<Rigidbody2D>();
             rb.isKinematic = true;
-
 
             return enemy;
         }
