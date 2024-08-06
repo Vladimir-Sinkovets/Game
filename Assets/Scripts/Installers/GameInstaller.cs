@@ -1,4 +1,5 @@
 using Assets.Scripts.Services.Controller;
+using Assets.Scripts.Services.EnemyAccessor;
 using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Settings;
 using UnityEngine;
@@ -25,5 +26,9 @@ public class GameInstaller : MonoInstaller
         Container.Bind<IEnemiesController>()
             .To<EnemiesController>()
             .FromInstance(_enemiesController);
+
+        Container.Bind<IEnemyStorage>()
+            .To<EnemyStorage>()
+            .AsSingle();
     }
 }

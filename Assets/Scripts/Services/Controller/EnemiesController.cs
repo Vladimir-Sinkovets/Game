@@ -1,18 +1,28 @@
 ﻿using Assets.Scripts.Enemies;
+using Assets.Scripts.Services.EnemyAccessor;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Services.Controller
 {
     public class EnemiesController : MonoBehaviour, IEnemiesController
     {
-        private List<Enemy> _enemies = new();
-
         [SerializeField] private Transform _target;
+
+        private IEnemyStorage _enemyStorage;
+
+        private IEnumerable<Enemy> Enemies => _enemyStorage.Enemies;
+
+        [Inject]
+        private void Construct(IEnemyStorage enemyStorage)
+        {
+            _enemyStorage = enemyStorage;
+        }
 
         private void Update()
         {
-            foreach (Enemy enemy in _enemies)
+            foreach (Enemy enemy in Enemies)
             {
                 Move(_target.position, enemy);
             }
@@ -31,7 +41,5 @@ namespace Assets.Scripts.Services.Controller
 
             enemy.transform.Translate(enemy.Speed * Time.deltaTime * normalizedDirection);
         }
-
-        public void Add(Enemy enemy) => _enemies.Add(enemy);
     }
 }
