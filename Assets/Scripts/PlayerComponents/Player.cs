@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Enemies;
 using Assets.Scripts.PlayerComponents.Abilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,8 +10,9 @@ namespace Assets.Scripts.PlayerComponents
 {
     public class Player : MonoBehaviour, IInitializable
     {
-        private readonly List<IAbility> _abilities = new List<IAbility>();
+        [SerializeField] private int _hp = 100;
 
+        private readonly List<IAbility> _abilities = new List<IAbility>();
         private DiContainer _diContainer;
 
         [Inject]
@@ -43,6 +45,19 @@ namespace Assets.Scripts.PlayerComponents
             return enemies
                 .Last()
                 .GetComponent<Enemy>();
+        }
+
+        public void MakeDamage(int damage)
+        {
+            _hp -= damage;
+
+            if (_hp < 0)
+                Die();
+        }
+
+        private void Die()
+        {
+            Debug.Log("player died");
         }
     }
 }

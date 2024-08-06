@@ -54,8 +54,6 @@ namespace Assets.Scripts.PlayerComponents
             enemy.MakeDamage(_damage);
 
             Die();
-
-            Debug.Log("Died");
         }
 
         private void Die()

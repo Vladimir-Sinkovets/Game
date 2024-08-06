@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 13
   _sprite: {fileID: -903510656, guid: 0e1a5a745be473e4a90da700bf1c148e, type: 3}
-  _speed: 0.5
+  _speed: 0.8
+  _damage: 1
+  _colliderRadius: 0.2
+  _timeBetweenHits: 1

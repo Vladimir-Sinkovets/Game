@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.PlayerComponents;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,10 @@ namespace Assets.Scripts.Enemies
         private float _speed;
         private int _hp;
         private Player _player;
+        private int _damage;
+        private float _timeBetweenHits;
+
+        private float _nextHitTime;
 
         public float Speed { get => _speed; }
 
@@ -20,22 +25,42 @@ namespace Assets.Scripts.Enemies
 
         public virtual void Update()
         {
+            Move();
+        }
+
+        private void Move()
+        {
             var direction = _player.transform.position - transform.position;
 
             var distance = direction.magnitude;
 
-            var normalizedDirection = direction / distance;
-
             if (distance < 1)
+            {
+                DamagePlayer();
                 return;
+            }
+
+            var normalizedDirection = direction / distance;
 
             transform.Translate(Speed * Time.deltaTime * normalizedDirection);
         }
 
-        public virtual void Init(float speed, int hp)
+        private void DamagePlayer()
+        {
+            if (_nextHitTime > Time.time)
+                return;
+
+            _nextHitTime = Time.time + _timeBetweenHits;
+
+            _player.MakeDamage(_damage);
+        }
+
+        public virtual void Init(float speed, int hp, int damage, float timeBetweenHits)
         {
             _speed = speed;
             _hp = hp;
+            _damage = damage;
+            _timeBetweenHits = timeBetweenHits;
         }
 
         public void MakeDamage(int _damage)
