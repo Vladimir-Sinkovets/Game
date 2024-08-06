@@ -11,7 +11,7 @@ namespace Assets.Scripts.Factories.EnemyFactories
         [SerializeField] protected Sprite _sprite;
         [SerializeField] protected float _speed;
 
-        public Enemy Get(DiContainer container)
+        public virtual Enemy Get(DiContainer container)
         {
             var enemy = container.InstantiateComponentOnNewGameObject<Enemy>();
             enemy.Init(_speed, _hp);
