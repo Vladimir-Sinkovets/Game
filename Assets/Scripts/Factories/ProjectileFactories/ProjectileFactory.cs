@@ -10,6 +10,7 @@ namespace Assets.Scripts.Factories.ProjectileFactories
     {
         [SerializeField] private float _speed;
         [SerializeField] private Sprite _sprite;
+        [SerializeField] private int _damage;
 
         public Projectile Get(DiContainer diContainer)
         {
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Factories.ProjectileFactories
             collider.radius = 0.25f;
             collider.isTrigger = true;
 
-            projectile.Init(_speed, _sprite, 2.0f);
+            projectile.Init(_speed, _sprite, 2.0f, _damage);
 
             return projectile;
         }

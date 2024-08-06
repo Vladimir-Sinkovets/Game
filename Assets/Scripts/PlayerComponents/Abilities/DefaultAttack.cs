@@ -34,12 +34,12 @@ namespace Assets.Scripts.PlayerComponents.Abilities
 
         private void Attack()
         {
-            var projectile = _projectileFactory.Get(_diContainer);
-
             var target = _player.GetNearestObject();
 
             if (target == null)
                 return;
+
+            var projectile = _projectileFactory.Get(_diContainer);
 
             projectile.SetDirection(target.transform.position - _player.transform.position);
             projectile.SetPosition(_player.transform.position);

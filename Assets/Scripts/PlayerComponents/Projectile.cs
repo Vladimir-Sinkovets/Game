@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Enemies;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.PlayerComponents
@@ -7,19 +8,19 @@ namespace Assets.Scripts.PlayerComponents
     {
         private float _speed;
         private Vector2 _direction = Vector2.zero;
+        private int _damage;
 
         private float _lifeTime = 1.0f;
         private float _time = 0.0f;
 
-        public void Init(float speed, Sprite sprite, float lifeTime)
+        public void Init(float speed, Sprite sprite, float lifeTime, int damage)
         {
             _speed = speed;
+            _lifeTime = lifeTime;
+            _damage = damage;
 
             var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-
             spriteRenderer.sprite = sprite;
-
-            _lifeTime = lifeTime;
         }
 
         public void Update()
@@ -45,6 +46,13 @@ namespace Assets.Scripts.PlayerComponents
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            var isEnemy = collision.TryGetComponent<Enemy>(out var enemy);
+
+            if (isEnemy == false)
+                return;
+
+            enemy.MakeDamage(_damage);
+
             Die();
 
             Debug.Log("Died");

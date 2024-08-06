@@ -26,5 +26,19 @@ namespace Assets.Scripts.Enemies
             _speed = speed;
             _hp = hp;
         }
+
+        public void MakeDamage(int _damage)
+        {
+            _hp -= _damage;
+
+            if (_hp < 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+        }
     }
 }
