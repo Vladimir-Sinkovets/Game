@@ -1,3 +1,4 @@
+using Assets.Scripts.PlayerComponents;
 using Assets.Scripts.Services.Controller;
 using Assets.Scripts.Services.EnemyAccessor;
 using Assets.Scripts.Services.EnemySpawner;
@@ -11,6 +12,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private SpawnerSettings _spawnerSettings;
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private EnemiesController _enemiesController;
+    [SerializeField] private Player _player;
 
     public override void InstallBindings()
     {
@@ -30,5 +32,8 @@ public class GameInstaller : MonoInstaller
         Container.Bind<IEnemyStorage>()
             .To<EnemyStorage>()
             .AsSingle();
+
+        Container.Bind<Player>()
+            .FromInstance(_player);
     }
 }

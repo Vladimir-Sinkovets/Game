@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Player
+namespace Assets.Scripts.PlayerComponents
 {
     public class PlayerMovement : MonoBehaviour
     {

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enemies;
+using Assets.Scripts.PlayerComponents;
 using Assets.Scripts.Services.EnemyAccessor;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,16 +9,17 @@ namespace Assets.Scripts.Services.Controller
 {
     public class EnemiesController : MonoBehaviour, IEnemiesController
     {
-        [SerializeField] private Transform _target;
+        private Transform _target;
 
         private IEnemyStorage _enemyStorage;
 
         private IEnumerable<Enemy> Enemies => _enemyStorage.Enemies;
 
         [Inject]
-        private void Construct(IEnemyStorage enemyStorage)
+        private void Construct(IEnemyStorage enemyStorage, Player player)
         {
             _enemyStorage = enemyStorage;
+            _target = player.transform;
         }
 
         private void Update()
