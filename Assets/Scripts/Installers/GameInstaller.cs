@@ -3,7 +3,6 @@ using Assets.Scripts.PlayerComponents;
 using Assets.Scripts.Services.Controllers;
 using Assets.Scripts.Services.EnemyAccessor;
 using Assets.Scripts.Services.EnemySpawner;
-using Assets.Scripts.Services.ProjectileAccessor;
 using Assets.Scripts.Settings;
 using UnityEngine;
 using Zenject;
@@ -19,12 +18,6 @@ public class GameInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.BindInterfacesAndSelfTo<ProjectileStorage>()
-            .AsSingle();
-
-        Container.BindInterfacesAndSelfTo<ProjectilesMover>()
-            .AsSingle();
-
         Container.Bind<FixedJoystick>()
             .FromInstance(_joystick);
 

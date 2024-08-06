@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Factories.ProjectileFactories;
-using Assets.Scripts.Services.ProjectileAccessor;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +8,6 @@ namespace Assets.Scripts.PlayerComponents.Abilities
     {
         private readonly ProjectileFactory _projectileFactory;
         private readonly DiContainer _diContainer;
-        private readonly IProjectileStorage _projectileStorage;
         private readonly Player _player;
 
         private float _nextAttackTime;
@@ -17,12 +15,10 @@ namespace Assets.Scripts.PlayerComponents.Abilities
 
         public DefaultAttack(ProjectileFactory projectileFactory,
             DiContainer diContainer,
-            IProjectileStorage projectileStorage,
             Player player)
         {
             _projectileFactory = projectileFactory;
             _diContainer = diContainer;
-            _projectileStorage = projectileStorage;
             _player = player;
         }
 
@@ -42,8 +38,6 @@ namespace Assets.Scripts.PlayerComponents.Abilities
 
             projectile.SetDirection(Vector2.left);
             projectile.SetPosition(_player.transform.position);
-
-            _projectileStorage.Add(projectile);
         }
     }
 }

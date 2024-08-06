@@ -8,26 +8,28 @@ namespace Assets.Scripts.PlayerComponents
         private float _speed;
         private Vector2 _direction = Vector2.zero;
 
-        //private float _maxLifeTime = 1.0f;
-        //private float _lifeTime = 0.0f;
+        private float _lifeTime = 1.0f;
+        private float _time = 0.0f;
 
-        public void Init(float speed, Sprite sprite)
+        public void Init(float speed, Sprite sprite, float lifeTime)
         {
             _speed = speed;
 
             var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
 
             spriteRenderer.sprite = sprite;
+
+            _lifeTime = lifeTime;
         }
 
-        public void Move()
+        public void Update()
         {
-            //if (_maxLifeTime <= _lifeTime)
-            //{
-            //    Destroy(gameObject);
-            //}
+            if (_lifeTime <= _time)
+            {
+                Destroy(gameObject);
+            }
 
-            //_lifeTime += Time.deltaTime;
+            _time += Time.deltaTime;
 
             transform.Translate(_direction * _speed * Time.deltaTime);
         }

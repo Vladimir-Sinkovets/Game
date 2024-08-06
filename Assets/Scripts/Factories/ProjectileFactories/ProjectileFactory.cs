@@ -14,7 +14,7 @@ namespace Assets.Scripts.Factories.ProjectileFactories
         {
             var projectile = diContainer.InstantiateComponentOnNewGameObject<Projectile>();
 
-            projectile.Init(_speed, _sprite);
+            projectile.Init(_speed, _sprite, 2.0f);
 
             return projectile;
         }
