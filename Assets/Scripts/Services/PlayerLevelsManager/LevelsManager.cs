@@ -20,6 +20,16 @@ namespace Assets.Scripts.Services.PlayerLevelsManager
         private int _experience = 0;
         private int _currentLevel = 0;
 
+        public int CurrentLevel
+        {
+            get => _currentLevel; set
+            {
+                _currentLevel = value;
+
+                OnLevelChanged?.Invoke(CurrentLevelSettings);
+            }
+        }
+
         private int Experience
         {
             get => _experience;
@@ -27,6 +37,14 @@ namespace Assets.Scripts.Services.PlayerLevelsManager
             {
                 _experience = value;
                 OnExperienceChanged?.Invoke(value);
+
+                if (CurrentLevel == _settings.LevelSettings.Count - 1)
+                    return;
+
+                if (_experience >= NextLevelSettings.ExperienceRequired)
+                {
+                    CurrentLevel++;
+                }
             }
         }
 
@@ -52,9 +70,10 @@ namespace Assets.Scripts.Services.PlayerLevelsManager
 
         public void Init()
         {
-            _currentLevel = 0;
-
-            OnLevelChanged?.Invoke(_settings.LevelSettings[_currentLevel]);
+            CurrentLevel = 0;
         }
+
+        private LevelSettings CurrentLevelSettings =>_settings.LevelSettings[CurrentLevel];
+        private LevelSettings NextLevelSettings =>_settings.LevelSettings[CurrentLevel + 1];
     }
 }
