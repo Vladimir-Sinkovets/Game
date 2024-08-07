@@ -5,8 +5,8 @@ using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Services.PlayerLevelsManager;
 using Assets.Scripts.Settings;
-using Assets.Scripts.UI;
 using Assets.Scripts.UI.LevelCounter;
+using Assets.Scripts.UI.Progress;
 using UnityEngine;
 using Zenject;
 
