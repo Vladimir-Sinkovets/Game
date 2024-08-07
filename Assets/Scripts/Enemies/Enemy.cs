@@ -40,6 +40,9 @@ namespace Assets.Scripts.Enemies
         {
             _enemyEvents.EnemyDied(this);
 
+            _enemyMover.OnTargetReached -= OnTargetReachedHandler;
+            _enemyHealth.OnHpEnded -= OnHpEndedHandler;
+
             Destroy(gameObject);
         }
 
