@@ -3,9 +3,9 @@ using Assets.Scripts.Services.EnemyEvents;
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Services.PlayerExPointsStorage
+namespace Assets.Scripts.Services.PlayerLevelsManager
 {
-    public class ExperienceCounter : IDisposable
+    public class LevelsManager : IDisposable
     {
         public event Action<int> OnExperienceChanged;
 
@@ -23,7 +23,7 @@ namespace Assets.Scripts.Services.PlayerExPointsStorage
             }
         }
 
-        public ExperienceCounter(IEnemyEventBus enemyEvent)
+        public LevelsManager(IEnemyEventBus enemyEvent)
         {
             _enemyEvent = enemyEvent;
             _enemyEvent.OnEnemyDied += OnEnemyDiedHandler;

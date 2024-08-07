@@ -2,7 +2,7 @@ using Assets.Scripts.Factories.ProjectileFactories;
 using Assets.Scripts.PlayerComponents;
 using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Services.EnemySpawner;
-using Assets.Scripts.Services.PlayerExPointsStorage;
+using Assets.Scripts.Services.PlayerLevelsManager;
 using Assets.Scripts.Settings;
 using UnityEngine;
 using Zenject;
@@ -32,7 +32,7 @@ public class GameInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<Player>()
             .FromInstance(_player);
 
-        Container.BindInterfacesAndSelfTo<ExperienceCounter>()
+        Container.BindInterfacesAndSelfTo<LevelsManager>()
             .AsSingle();
 
         Container.Bind<IEnemyEventBus>()
