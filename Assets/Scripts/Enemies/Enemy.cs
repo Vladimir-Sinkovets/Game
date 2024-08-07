@@ -11,10 +11,14 @@ namespace Assets.Scripts.Enemies
 
         private EnemyMover _enemyMover;
         private Health _enemyHealth;
+
         private int _damage;
+        private int _experience;
 
         private float _timeBetweenHits;
         private float _nextHitTime;
+
+        public int Experience { get => _experience; }
 
         [Inject]
         private void Construct(IEnemyEventBus enemyEvents)
@@ -22,7 +26,7 @@ namespace Assets.Scripts.Enemies
             _enemyEvents = enemyEvents;
         }
 
-        public virtual void Init(float speed, int hp, int damage, float timeBetweenHits)
+        public virtual void Init(float speed, int hp, int damage, float timeBetweenHits, int experience)
         {
             _enemyMover = GetComponent<EnemyMover>();
             _enemyMover.Init(speed);
@@ -34,6 +38,7 @@ namespace Assets.Scripts.Enemies
 
             _damage = damage;
             _timeBetweenHits = timeBetweenHits;
+            _experience = experience;
         }
 
         private void OnHpEndedHandler()

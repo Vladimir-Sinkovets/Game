@@ -11,6 +11,7 @@ namespace Assets.Scripts.Factories.EnemyFactories
         [SerializeField] protected Enemy _prefab;
         [Space]
         [SerializeField] protected int _hp = 10;
+        [SerializeField] protected int _experience = 1;
         [SerializeField] protected Sprite _sprite;
         [SerializeField] protected float _speed = 2.0f;
         [SerializeField] protected int _damage = 1;
@@ -20,7 +21,7 @@ namespace Assets.Scripts.Factories.EnemyFactories
         {
             var enemy = container.InstantiatePrefabForComponent<Enemy>(_prefab);
             
-            enemy.Init(_speed, _hp, _damage, _timeBetweenHits);
+            enemy.Init(_speed, _hp, _damage, _timeBetweenHits, _experience);
 
             var spriteRenderer = enemy.GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = _sprite;
