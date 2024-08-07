@@ -1,16 +1,26 @@
 ﻿using Assets.Scripts.PlayerComponents;
+using Assets.Scripts.Services.EnemyEvents;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Enemies
 {
     public class Enemy : MonoBehaviour
     {
+        private IEnemyEventBus _enemyEvents;
+
         private EnemyMover _enemyMover;
         private Health _enemyHealth;
         private int _damage;
 
         private float _timeBetweenHits;
         private float _nextHitTime;
+
+        [Inject]
+        private void Construct(IEnemyEventBus enemyEvents)
+        {
+            _enemyEvents = enemyEvents;
+        }
 
         public virtual void Init(float speed, int hp, int damage, float timeBetweenHits)
         {
@@ -28,6 +38,8 @@ namespace Assets.Scripts.Enemies
 
         private void OnHpEndedHandler()
         {
+            _enemyEvents.EnemyDied(this);
+
             Destroy(gameObject);
         }
 

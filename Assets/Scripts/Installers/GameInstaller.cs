@@ -1,5 +1,6 @@
 using Assets.Scripts.Factories.ProjectileFactories;
 using Assets.Scripts.PlayerComponents;
+using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Settings;
 using UnityEngine;
@@ -29,5 +30,8 @@ public class GameInstaller : MonoInstaller
 
         Container.BindInterfacesAndSelfTo<Player>()
             .FromInstance(_player);
+
+        Container.Bind<IEnemyEventBus>()
+            .To<EnemyEventBus>();
     }
 }
