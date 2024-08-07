@@ -5,6 +5,8 @@ using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Services.PlayerLevelsManager;
 using Assets.Scripts.Settings;
+using Assets.Scripts.UI;
+using Assets.Scripts.UI.LevelCounter;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +17,8 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private Player _player;
     [SerializeField] private ProjectileFactory _projectileFactory;
+    [SerializeField] private ProgressUI _progress;
+    [SerializeField] private LevelCounterUI _levelCounter;
 
     public override void InstallBindings()
     {
@@ -26,9 +30,15 @@ public class GameInstaller : MonoInstaller
 
         Container.Bind<GameSettings>()
             .FromInstance(_spawnerSettings);
-        
+
         Container.Bind<ProjectileFactory>()
             .FromInstance(_projectileFactory);
+
+        Container.BindInterfacesTo<ProgressUI>()
+            .FromInstance(_progress);
+
+        Container.BindInterfacesTo<LevelCounterUI>()
+            .FromInstance(_levelCounter);
 
         Container.BindInterfacesAndSelfTo<Player>()
             .FromInstance(_player);

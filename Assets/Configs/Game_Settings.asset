@@ -12,5 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eddf2feab869c342aa17a37d7f678d2, type: 3}
   m_Name: Game_Settings
   m_EditorClassIdentifier: 
-  _levels: []
-  _spawnRate: 2
+  _levels:
+  - _enemyFactories:
+    - {fileID: 11400000, guid: 339b7ad54dbca7c4c9208b2b7c5e716d, type: 2}
+    _experienceRequired: 0
+    _spawnRate: 0.2
+  - _enemyFactories:
+    - {fileID: 11400000, guid: 0561a5870e1c48645b83ff97e00c9ed9, type: 2}
+    _experienceRequired: 2
+    _spawnRate: 0.3
+  - _enemyFactories:
+    - {fileID: 11400000, guid: 7bc83859eafe8174dbe0eb4b1607e6da, type: 2}
+    _experienceRequired: 20
+    _spawnRate: 0.3
+  - _enemyFactories:
+    - {fileID: 11400000, guid: 7bc83859eafe8174dbe0eb4b1607e6da, type: 2}
+    _experienceRequired: 200
+    _spawnRate: 0.3

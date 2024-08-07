@@ -4,31 +4,34 @@ using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Settings;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Services.PlayerLevelsManager
 {
     public class LevelsManager : IDisposable, ILevelManager
     {
-        public event Action<int> OnExperienceChanged;
-        public event Action<LevelSettings> OnLevelChanged;
+        public event Action<int, int> OnExperienceChanged;
+        public event Action<LevelSettings, int> OnLevelChanged;
 
         private readonly IEnemyEventBus _enemyEvent;
         private readonly GameSettings _settings;
 
 
-        private int _experience = 0;
-        private int _currentLevel = 0;
+        private int _experience;
+        private int _currentLevel;
 
         public int CurrentLevel
         {
-            get => _currentLevel; set
+            get => _currentLevel;
+            set
             {
                 _currentLevel = value;
 
-                OnLevelChanged?.Invoke(CurrentLevelSettings);
+                OnLevelChanged?.Invoke(CurrentLevelSettings, _currentLevel);
             }
         }
+        public int MaxLevel { get => _settings.LevelSettings.Count - 1; }
 
         private int Experience
         {
@@ -36,15 +39,19 @@ namespace Assets.Scripts.Services.PlayerLevelsManager
             set
             {
                 _experience = value;
-                OnExperienceChanged?.Invoke(value);
+                
+                var goal = GetExperienceGoal();
 
-                if (CurrentLevel == _settings.LevelSettings.Count - 1)
-                    return;
-
-                if (_experience >= NextLevelSettings.ExperienceRequired)
+                if (_experience >= goal && CurrentLevel < MaxLevel)
                 {
                     CurrentLevel++;
+
+                    _experience = 0;
+
+                    goal = GetExperienceGoal();
                 }
+
+                OnExperienceChanged?.Invoke(_experience, goal);
             }
         }
 
@@ -71,9 +78,18 @@ namespace Assets.Scripts.Services.PlayerLevelsManager
         public void Init()
         {
             CurrentLevel = 0;
+            Experience = 0;
         }
 
         private LevelSettings CurrentLevelSettings =>_settings.LevelSettings[CurrentLevel];
-        private LevelSettings NextLevelSettings =>_settings.LevelSettings[CurrentLevel + 1];
+
+
+        private int GetExperienceGoal()
+        {
+            if (CurrentLevel >= _settings.LevelSettings.Count - 1)
+                return _settings.LevelSettings.Last().ExperienceRequired;
+
+            return _settings.LevelSettings[CurrentLevel + 1].ExperienceRequired;
+        }
     }
 }

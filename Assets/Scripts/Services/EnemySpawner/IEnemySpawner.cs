@@ -4,6 +4,6 @@ namespace Assets.Scripts.Services.EnemySpawner
 {
     public interface IEnemySpawner
     {
-        void SetLevel(LevelSettings settings);
+        void SetLevel(LevelSettings settings, int levelIndex);
     }
 }

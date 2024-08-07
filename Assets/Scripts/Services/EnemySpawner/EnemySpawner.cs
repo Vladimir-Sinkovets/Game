@@ -24,7 +24,7 @@ namespace Assets.Scripts.Services.EnemySpawner
             _container = container;
         }
 
-        public void SetLevel(LevelSettings settings)
+        public void SetLevel(LevelSettings settings, int levelIndex)
         {
             _settings = settings;
 
