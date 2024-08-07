@@ -5,31 +5,30 @@ using Zenject;
 
 namespace Assets.Scripts.Services.EnemySpawner
 {
-    public class EnemySpawner : MonoBehaviour, ITickable, IInitializable
+    public class EnemySpawner : MonoBehaviour, IEnemySpawner, ITickable
     {
-        private SpawnerSettings _settings;
-        private DiContainer _container;
-        private System.Random _random = new();
-
-
         [SerializeField] private Vector2 _firstAngleOfField;
         [SerializeField] private Vector2 _secondAngleOfField;
 
-        private int _currentSpawnLevel = 0;
+        private DiContainer _container;
+        private System.Random _random = new();
+
+        private LevelSettings _settings;
 
         private float _spawnTime;
         private float _nextSpawnTime;
 
         [Inject]
-        public void Construct(SpawnerSettings settings, DiContainer container)
+        public void Construct(DiContainer container)
         {
-            _settings = settings;
             _container = container;
         }
 
-        public void Initialize()
+        public void SetLevel(LevelSettings settings)
         {
-            _spawnTime = 1.0f / _settings.SpawnRate;
+            _settings = settings;
+
+            _spawnTime = 1.0f / settings.SpawnRate;
 
             _nextSpawnTime = Time.time;
         }
@@ -55,7 +54,7 @@ namespace Assets.Scripts.Services.EnemySpawner
 
         private Enemy GetRandomEnemyFromCurrentLevel()
         {
-            var currentEnemyFactories = _settings.SpawnSettings[_currentSpawnLevel].EnemyFactories;
+            var currentEnemyFactories = _settings.EnemyFactories;
 
             var enemyFactoryIndex = _random.Next(currentEnemyFactories.Count);
 
