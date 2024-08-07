@@ -7,9 +7,21 @@ namespace Assets.Scripts.Services.PlayerExPointsStorage
 {
     public class ExperienceCounter : IDisposable
     {
+        public event Action<int> OnExperienceChanged;
+
         private readonly IEnemyEventBus _enemyEvent;
 
         private int _experience;
+
+        private int Experience
+        {
+            get => _experience;
+            set
+            {
+                _experience = value;
+                OnExperienceChanged?.Invoke(value);
+            }
+        }
 
         public ExperienceCounter(IEnemyEventBus enemyEvent)
         {
@@ -24,9 +36,9 @@ namespace Assets.Scripts.Services.PlayerExPointsStorage
 
         private void OnEnemyDiedHandler(Enemy enemy)
         {
-            _experience += enemy.Experience;
+            Experience += enemy.Experience;
 
-            Debug.Log("_experience = " + _experience);
+            Debug.Log("_experience = " + Experience);
         }
     }
 }
