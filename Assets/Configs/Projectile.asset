@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _sprite: {fileID: 21300000, guid: 763d45c9ba4523c4faa93de7cd8f3ae3, type: 3}
-  _damage: 5
+  _damage: 20

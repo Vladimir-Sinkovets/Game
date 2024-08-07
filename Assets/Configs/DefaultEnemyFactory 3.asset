@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 5159165526323256225, guid: 97ec137d10a8b874695f0fd340f2da8f, type: 3}
   _hp: 13
-  _experience: 1
-  _sprite: {fileID: -353412375, guid: 0e1a5a745be473e4a90da700bf1c148e, type: 3}
+  _experience: 30
+  _sprite: {fileID: -1554139444, guid: 0e1a5a745be473e4a90da700bf1c148e, type: 3}
   _speed: 1
   _damage: 1
   _timeBetweenHits: 1

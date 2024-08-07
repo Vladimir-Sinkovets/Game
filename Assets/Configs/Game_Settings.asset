@@ -16,16 +16,16 @@ MonoBehaviour:
   - _enemyFactories:
     - {fileID: 11400000, guid: 339b7ad54dbca7c4c9208b2b7c5e716d, type: 2}
     _experienceRequired: 0
-    _spawnRate: 0.2
+    _spawnRate: 5
   - _enemyFactories:
     - {fileID: 11400000, guid: 0561a5870e1c48645b83ff97e00c9ed9, type: 2}
     _experienceRequired: 2
-    _spawnRate: 0.3
+    _spawnRate: 1
   - _enemyFactories:
     - {fileID: 11400000, guid: 7bc83859eafe8174dbe0eb4b1607e6da, type: 2}
     _experienceRequired: 20
     _spawnRate: 0.3
   - _enemyFactories:
-    - {fileID: 11400000, guid: 7bc83859eafe8174dbe0eb4b1607e6da, type: 2}
+    - {fileID: 11400000, guid: 9c1fc602669392c4baf3e41670769a35, type: 2}
     _experienceRequired: 200
     _spawnRate: 0.3
