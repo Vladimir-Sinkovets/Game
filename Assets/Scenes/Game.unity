@@ -782,7 +782,7 @@ MonoBehaviour:
   _spawnerSettings: {fileID: 11400000, guid: 931eb2b965db7274cb6beb9ff6245d80, type: 2}
   _enemySpawner: {fileID: 1043470144}
   _player: {fileID: 1064364343}
-  _projectileFactory: {fileID: 11400000, guid: 8499f80c89593cb409300345cb2feec7, type: 2}
+  _defaultAttackSettings: {fileID: 11400000, guid: 4ead0734ae9dfb04782cc4357cf1546d, type: 2}
   _progress: {fileID: 83687929}
   _levelCounter: {fileID: 393379187}
 --- !u!1 &924081421

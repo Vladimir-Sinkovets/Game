@@ -1,6 +1,7 @@
 using Assets.Scripts;
 using Assets.Scripts.Factories.ProjectileFactories;
 using Assets.Scripts.PlayerComponents;
+using Assets.Scripts.PlayerComponents.AbilitySettings;
 using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Services.PlayerLevelsManager;
@@ -16,7 +17,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private GameSettings _spawnerSettings;
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private Player _player;
-    [SerializeField] private ProjectileFactory _projectileFactory;
+    [SerializeField] private DefaultAttackSettings _defaultAttackSettings;
     [SerializeField] private ProgressUI _progress;
     [SerializeField] private LevelCounterUI _levelCounter;
 
@@ -31,8 +32,8 @@ public class GameInstaller : MonoInstaller
         Container.Bind<GameSettings>()
             .FromInstance(_spawnerSettings);
 
-        Container.Bind<ProjectileFactory>()
-            .FromInstance(_projectileFactory);
+        Container.Bind<DefaultAttackSettings>()
+            .FromInstance(_defaultAttackSettings);
 
         Container.BindInterfacesTo<ProgressUI>()
             .FromInstance(_progress);

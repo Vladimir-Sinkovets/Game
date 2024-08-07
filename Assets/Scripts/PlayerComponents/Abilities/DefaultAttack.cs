@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Factories.ProjectileFactories;
+using Assets.Scripts.PlayerComponents.AbilitySettings;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -6,20 +8,24 @@ namespace Assets.Scripts.PlayerComponents.Abilities
 {
     public class DefaultAttack : IAbility
     {
-        private readonly ProjectileFactory _projectileFactory;
+        private readonly DefaultAttackSettings _settings;
         private readonly DiContainer _diContainer;
         private readonly Player _player;
 
         private float _nextAttackTime;
         private float _timeBetweenAttacks = 1;
+        private int _currentLevel = 0;
 
-        public DefaultAttack(ProjectileFactory projectileFactory,
-            DiContainer diContainer,
-            Player player)
+        public DefaultAttack(DefaultAttackSettings settings, DiContainer diContainer, Player player)
         {
-            _projectileFactory = projectileFactory;
+            _settings = settings;
             _diContainer = diContainer;
             _player = player;
+        }
+
+        public void IncreaseLevel()
+        {
+            _currentLevel++; 
         }
 
         public void Update()
@@ -39,10 +45,12 @@ namespace Assets.Scripts.PlayerComponents.Abilities
             if (target == null)
                 return;
 
-            var projectile = _projectileFactory.Get(_diContainer);
+            var projectile = CurrentFactory.Get(_diContainer);
 
             projectile.SetDirection(target.transform.position - _player.transform.position);
             projectile.SetPosition(_player.transform.position);
         }
+
+        private ProjectileFactory CurrentFactory => _settings.Levels[_currentLevel].Factory;
     }
 }

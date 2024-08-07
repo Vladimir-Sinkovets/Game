@@ -1,15 +1,16 @@
 ﻿using Assets.Scripts.PlayerComponents;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Factories.ProjectileFactories
 {
-    [CreateAssetMenu(fileName = "Projectile", menuName = "Configs/Projectile")]
-    public class ProjectileFactory : ScriptableObject
+    [Serializable]
+    public class ProjectileFactory
     {
-        [SerializeField] private float _speed;
         [SerializeField] private Sprite _sprite;
+        [SerializeField] private float _speed;
         [SerializeField] private int _damage;
 
         public Projectile Get(DiContainer diContainer)
