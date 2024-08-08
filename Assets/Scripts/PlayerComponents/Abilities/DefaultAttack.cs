@@ -30,7 +30,7 @@ namespace Assets.Scripts.PlayerComponents.Abilities
         public void IncreaseLevel()
         {
             Debug.Log("level up");
-            _currentLevel++; 
+            _currentLevel++;
         }
 
         public void Update()
@@ -55,6 +55,8 @@ namespace Assets.Scripts.PlayerComponents.Abilities
             projectile.SetDirection(target.transform.position - _player.transform.position);
             projectile.SetPosition(_player.transform.position);
         }
+
+        public void Init() { }
 
         private ProjectileFactory CurrentFactory => _settings.Levels[_currentLevel].Factory;
         private DefaultAttackLevelSettings CurrentLevelSettings => _settings.Levels[_currentLevel];

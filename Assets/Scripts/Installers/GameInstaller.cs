@@ -19,6 +19,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private Player _player;
     [SerializeField] private DefaultAttackSettings _defaultAttackSettings;
+    [SerializeField] private RotatingAxesSettings _axesSettings;
     [SerializeField] private ProgressUI _progress;
     [SerializeField] private LevelCounterUI _levelCounter;
     [SerializeField] private AbilityPanelUI _panel;
@@ -36,6 +37,9 @@ public class GameInstaller : MonoInstaller
 
         Container.Bind<DefaultAttackSettings>()
             .FromInstance(_defaultAttackSettings);
+
+        Container.Bind<RotatingAxesSettings>()
+            .FromInstance(_axesSettings);
 
         Container.BindInterfacesTo<ProgressUI>()
             .FromInstance(_progress);

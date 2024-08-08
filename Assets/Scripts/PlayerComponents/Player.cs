@@ -27,9 +27,16 @@ namespace Assets.Scripts.PlayerComponents
         public void Initialize()
         {
             _abilities.Add(_diContainer.Instantiate<DefaultAttack>());
+            _abilities.Add(_diContainer.Instantiate<RotatingAxes>());
+
             _health = GetComponent<Health>();
             _health.Init(_hp);
             _health.OnHpEnded += OnHpEndedHandler;
+
+            foreach (var ability in _abilities)
+            {
+                ability.Init();
+            }
         }
 
         private void OnHpEndedHandler()

@@ -10,5 +10,6 @@ namespace Assets.Scripts.PlayerComponents.Abilities
 
         void IncreaseLevel();
         void Update();
+        void Init();
     }
 }

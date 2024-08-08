@@ -192,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &118069423
 RectTransform:
   m_ObjectHideFlags: 0
@@ -906,6 +906,7 @@ MonoBehaviour:
   _enemySpawner: {fileID: 1043470144}
   _player: {fileID: 1064364343}
   _defaultAttackSettings: {fileID: 11400000, guid: 4ead0734ae9dfb04782cc4357cf1546d, type: 2}
+  _axesSettings: {fileID: 11400000, guid: 6cd613b00d9725343aa5c1b8f02338d5, type: 2}
   _progress: {fileID: 83687929}
   _levelCounter: {fileID: 393379187}
   _panel: {fileID: 401600544}
