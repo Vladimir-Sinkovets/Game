@@ -14,8 +14,9 @@ namespace Assets.Scripts.PlayerComponents
         private readonly List<IAbility> _abilities = new List<IAbility>();
 
         private DiContainer _diContainer;
-
         private Health _health;
+
+        public List<IAbility> Abilities => _abilities;
 
         [Inject]
         private void Construct(DiContainer diContainer)

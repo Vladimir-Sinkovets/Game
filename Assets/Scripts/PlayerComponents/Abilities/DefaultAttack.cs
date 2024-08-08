@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Factories.ProjectileFactories;
 using Assets.Scripts.PlayerComponents.AbilitySettings;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +15,11 @@ namespace Assets.Scripts.PlayerComponents.Abilities
         private float _timeBetweenAttacks = 1;
         private int _currentLevel = 0;
 
+        public int Level => _currentLevel;
+        public int MaxLevel => _settings.Levels.Count - 1;
+
+        public Sprite Sprite => CurrentLevelSettings.Icon;
+
         public DefaultAttack(DefaultAttackSettings settings, DiContainer diContainer, Player player)
         {
             _settings = settings;
@@ -25,6 +29,7 @@ namespace Assets.Scripts.PlayerComponents.Abilities
 
         public void IncreaseLevel()
         {
+            Debug.Log("level up");
             _currentLevel++; 
         }
 
@@ -52,5 +57,6 @@ namespace Assets.Scripts.PlayerComponents.Abilities
         }
 
         private ProjectileFactory CurrentFactory => _settings.Levels[_currentLevel].Factory;
+        private DefaultAttackLevelSettings CurrentLevelSettings => _settings.Levels[_currentLevel];
     }
 }

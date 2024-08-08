@@ -6,6 +6,7 @@ using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Services.PlayerLevelsManager;
 using Assets.Scripts.Settings;
+using Assets.Scripts.UI.AbilityPanel;
 using Assets.Scripts.UI.LevelCounter;
 using Assets.Scripts.UI.Progress;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private DefaultAttackSettings _defaultAttackSettings;
     [SerializeField] private ProgressUI _progress;
     [SerializeField] private LevelCounterUI _levelCounter;
+    [SerializeField] private AbilityPanelUI _panel;
 
     public override void InstallBindings()
     {
@@ -46,6 +48,9 @@ public class GameInstaller : MonoInstaller
 
         Container.BindInterfacesAndSelfTo<LevelsManager>()
             .AsSingle();
+
+        Container.BindInterfacesAndSelfTo<AbilityPanelUI>()
+            .FromInstance(_panel);
 
         Container.Bind<IEnemyEventBus>()
             .To<EnemyEventBus>()
