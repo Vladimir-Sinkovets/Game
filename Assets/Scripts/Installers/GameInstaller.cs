@@ -81,7 +81,8 @@ public class GameInstaller : MonoInstaller
         Container.BindInterfacesTo<ProgressUI>()
             .FromInstance(_progress);
 
-        Container.BindInterfacesTo<LevelCounterUI>()
+        Container.Bind<ILevelCounterUI>()
+            .To<LevelCounterUI>()
             .FromInstance(_levelCounter);
     }
 }
