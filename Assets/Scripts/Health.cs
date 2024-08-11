@@ -31,7 +31,7 @@ namespace Assets.Scripts
         {
             Hp -= _damage;
 
-            if (Hp < 0)
+            if (Hp <= 0)
             {
                 OnHpEnded?.Invoke();
             }
