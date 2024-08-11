@@ -17,5 +17,5 @@ MonoBehaviour:
     _damage: 2
   - _rotatingSpeed: 360
     _damage: 3
-  _sprite: {fileID: 21300000, guid: d8bf68565b7a74441970f4d67a206401, type: 3}
+  _icon: {fileID: 21300000, guid: c79b2de9883d72449ad7535af8652e86, type: 3}
   _prefab: {fileID: 6235382283901015834, guid: f302ed6122a853041ab2fab86262ea61, type: 3}
