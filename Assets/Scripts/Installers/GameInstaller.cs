@@ -78,7 +78,8 @@ public class GameInstaller : MonoInstaller
         Container.Bind<FixedJoystick>()
             .FromInstance(_joystick);
 
-        Container.BindInterfacesTo<ProgressUI>()
+        Container.Bind<ProgressUI>()
+            .To<ProgressUI>()
             .FromInstance(_progress);
 
         Container.Bind<ILevelCounterUI>()
