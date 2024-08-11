@@ -10,13 +10,15 @@ namespace Assets.Scripts.PlayerComponents
     public class Player : MonoBehaviour
     {
         [SerializeField] private int _hp = 100;
+        [SerializeField] private Health _health;
 
         private readonly List<IAbility> _abilities = new List<IAbility>();
 
         private DiContainer _diContainer;
-        private Health _health;
 
         public List<IAbility> Abilities => _abilities;
+
+        public Health Health { get => _health; }
 
         [Inject]
         private void Construct(DiContainer diContainer)
@@ -29,7 +31,6 @@ namespace Assets.Scripts.PlayerComponents
             _abilities.Add(_diContainer.Instantiate<DefaultAttack>());
             _abilities.Add(_diContainer.Instantiate<RotatingAxes>());
 
-            _health = GetComponent<Health>();
             _health.Init(_hp);
             _health.OnHpEnded += OnHpEndedHandler;
 

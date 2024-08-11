@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Services.UI.Progress
 {
-    public class ProgressUI : MonoBehaviour, IProgressUI
+    public class BarUI : MonoBehaviour, IBarUI
     {
         [SerializeField] private Image _bar;
         [SerializeField] private TMP_Text _text;

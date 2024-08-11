@@ -2,6 +2,7 @@
 using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Services.PlayerLevelsManager;
 using Assets.Scripts.Services.UI.AbilityPanel;
+using Assets.Scripts.Services.UI.EndingPanel;
 using Assets.Scripts.Services.UI.LevelCounter;
 using Assets.Scripts.Services.UI.Progress;
 using Assets.Scripts.Settings;
@@ -15,14 +16,20 @@ namespace Assets.Scripts
     {
         [Inject] private readonly ILevelManager _levelManager;
         [Inject] private readonly IEnemySpawner _enemySpawner;
-        [Inject] private readonly IProgressUI _progress;
         [Inject] private readonly ILevelCounterUI _levelCounterUI;
         [Inject] private readonly IAbilityPanelUI _panel;
+        [Inject] private readonly IEndingPanelUI _endingPanel;
         [Inject] private readonly Player _player;
+        [Inject(Id = BarId.Progress)] private readonly IBarUI _progress;
+        [Inject(Id = BarId.Hp)] private readonly IBarUI _hpBar;
 
 
         public void Initialize()
         {
+            _player.Health.OnHpChanged += _hpBar.SetValue;
+
+            _player.Health.OnHpEnded += OnPlayerDiedHandler;
+
             _player.Init();
 
             _levelManager.OnLevelChanged += _enemySpawner.SetLevel;
@@ -38,6 +45,13 @@ namespace Assets.Scripts
             _panel.OnSkillUpgraded += HidePanel;
 
             _panel.Init();
+        }
+
+        private void OnPlayerDiedHandler()
+        {
+            Time.timeScale = 0;
+
+            _endingPanel.Show();
         }
 
         private void ShowPanel(LevelSettings settings, int level)
@@ -59,6 +73,10 @@ namespace Assets.Scripts
 
         public void Dispose()
         {
+            _player.Health.OnHpChanged -= _hpBar.SetValue;
+
+            _player.Health.OnHpEnded -= OnPlayerDiedHandler;
+
             _levelManager.OnLevelChanged -= _enemySpawner.SetLevel;
 
             _levelManager.OnExperienceChanged -= _progress.SetValue;

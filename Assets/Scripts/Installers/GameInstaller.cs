@@ -4,6 +4,7 @@ using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Services.PlayerLevelsManager;
 using Assets.Scripts.Services.UI.AbilityPanel;
+using Assets.Scripts.Services.UI.EndingPanel;
 using Assets.Scripts.Services.UI.LevelCounter;
 using Assets.Scripts.Services.UI.Progress;
 using Assets.Scripts.Settings;
@@ -16,9 +17,11 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private FixedJoystick _joystick;
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private Player _player;
-    [SerializeField] private ProgressUI _progress;
     [SerializeField] private LevelCounterUI _levelCounter;
     [SerializeField] private AbilityPanelUI _panel;
+    [SerializeField] private EndingPanelUI _endingPanel;
+    [SerializeField] private BarUI _progressBar;
+    [SerializeField] private BarUI _hpBar;
     [Space]
     [SerializeField] private GameSettings _spawnerSettings;
     [SerializeField] private DefaultAttackSettings _defaultAttackSettings;
@@ -78,9 +81,19 @@ public class GameInstaller : MonoInstaller
         Container.Bind<FixedJoystick>()
             .FromInstance(_joystick);
 
-        Container.Bind<IProgressUI>()
-            .To<ProgressUI>()
-            .FromInstance(_progress);
+        Container.Bind<IBarUI>()
+            .WithId(BarId.Progress)
+            .To<BarUI>()
+            .FromInstance(_progressBar);
+
+        Container.Bind<IBarUI>()
+            .WithId(BarId.Hp)
+            .To<BarUI>()
+            .FromInstance(_hpBar);
+
+        Container.Bind<IEndingPanelUI>()
+            .To<EndingPanelUI>()
+            .FromInstance(_endingPanel);
 
         Container.Bind<ILevelCounterUI>()
             .To<LevelCounterUI>()
