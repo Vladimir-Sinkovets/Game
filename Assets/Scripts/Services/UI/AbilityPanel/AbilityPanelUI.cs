@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.PlayerComponents;
-using Assets.Scripts.UIComponents;
+using Assets.Scripts.UI.AbilityPanel;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Assets.Scripts.Services.UI.AbilityPanel
 {
-    public class AbilityPanelUI : MonoBehaviour, IInitializable
+    public class AbilityPanelUI : MonoBehaviour, IAbilityPanelUI
     {
         public event Action OnSkillUpgraded;
 
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
             _player = player;
         }
 
-        public void Initialize()
+        public void Init()
         {
             foreach (var ability in _player.Abilities)
             {
@@ -45,7 +45,6 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
             }
         }
 
-
         public void Show()
         {
             _panel.SetActive(true);
@@ -55,6 +54,7 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
                 button.UpdateButton();
             }
         }
+
         public void Hide()
         {
             _panel.SetActive(false);

@@ -16,7 +16,7 @@ namespace Assets.Scripts
         [Inject] private readonly IEnemySpawner _enemySpawner;
         [Inject] private readonly IProgressUI _progress;
         [Inject] private readonly ILevelCounterUI _levelCounterUI;
-        [Inject] private readonly AbilityPanelUI _panel;
+        [Inject] private readonly IAbilityPanelUI _panel;
 
 
         public void Initialize()
@@ -27,15 +27,20 @@ namespace Assets.Scripts
 
             _levelManager.OnLevelChanged += _levelCounterUI.ChangeLevelTextCount;
 
-            _levelManager.Init();
-
             _levelManager.OnLevelChanged += ShowPanel;
 
+            _levelManager.Init();
+
             _panel.OnSkillUpgraded += HidePanel;
+
+            _panel.Init();
         }
 
         private void ShowPanel(LevelSettings settings, int level)
         {
+            if (level == 0)
+                return;
+
             Time.timeScale = 0;
 
             _panel.Show();

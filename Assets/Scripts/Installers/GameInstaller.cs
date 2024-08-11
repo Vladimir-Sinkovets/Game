@@ -71,7 +71,8 @@ public class GameInstaller : MonoInstaller
 
     private void BindUI()
     {
-        Container.BindInterfacesAndSelfTo<AbilityPanelUI>()
+        Container.Bind<IAbilityPanelUI>()
+            .To<AbilityPanelUI>()
             .FromInstance(_panel);
 
         Container.Bind<FixedJoystick>()
