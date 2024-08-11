@@ -20,7 +20,7 @@ namespace Assets.Scripts
 
             if (_hp < 0)
             {
-                OnHpEnded.Invoke();
+                OnHpEnded?.Invoke();
             }
         }
     }
