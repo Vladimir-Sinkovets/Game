@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.Progress
+namespace Assets.Scripts.Services.UI.Progress
 {
     public class ProgressUI : MonoBehaviour, IProgressUI
     {

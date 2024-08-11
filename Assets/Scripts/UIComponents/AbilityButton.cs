@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.AbilityPanel
+namespace Assets.Scripts.UIComponents
 {
     public class AbilityButton : MonoBehaviour
     {

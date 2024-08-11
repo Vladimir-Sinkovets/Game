@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.PlayerComponents.AbilitySettings
+namespace Assets.Scripts.Settings.AbilitySettings
 {
     [Serializable]
     public class RotatingAxesLevelSettings

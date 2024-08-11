@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.LevelCounter
+namespace Assets.Scripts.Services.UI.LevelCounter
 {
     public class LevelCounterUI : MonoBehaviour, ILevelCounterUI
     {

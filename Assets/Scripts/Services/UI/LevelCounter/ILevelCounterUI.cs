@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Settings;
 
-namespace Assets.Scripts.UI.LevelCounter
+namespace Assets.Scripts.Services.UI.LevelCounter
 {
     public interface ILevelCounterUI
     {

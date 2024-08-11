@@ -1,10 +1,11 @@
 ﻿using Assets.Scripts.PlayerComponents;
+using Assets.Scripts.UIComponents;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.UI.AbilityPanel
+namespace Assets.Scripts.Services.UI.AbilityPanel
 {
     public class AbilityPanelUI : MonoBehaviour, IInitializable
     {
@@ -31,7 +32,7 @@ namespace Assets.Scripts.UI.AbilityPanel
             {
                 var button = Instantiate(_prefab, _container);
 
-                button.OnClick += () => 
+                button.OnClick += () =>
                 {
                     ability.IncreaseLevel();
 
@@ -43,7 +44,7 @@ namespace Assets.Scripts.UI.AbilityPanel
                 _buttons.Add(button);
             }
         }
-        
+
 
         public void Show()
         {

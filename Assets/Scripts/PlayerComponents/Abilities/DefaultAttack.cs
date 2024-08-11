@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Factories.ProjectileFactories;
-using Assets.Scripts.PlayerComponents.AbilitySettings;
+using Assets.Scripts.Settings.AbilitySettings;
 using UnityEngine;
 using Zenject;
 

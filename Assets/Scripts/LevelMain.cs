@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Services.PlayerLevelsManager;
+using Assets.Scripts.Services.UI.AbilityPanel;
+using Assets.Scripts.Services.UI.LevelCounter;
+using Assets.Scripts.Services.UI.Progress;
 using Assets.Scripts.Settings;
-using Assets.Scripts.UI.AbilityPanel;
-using Assets.Scripts.UI.LevelCounter;
-using Assets.Scripts.UI.Progress;
 using System;
 using UnityEngine;
 using Zenject;
