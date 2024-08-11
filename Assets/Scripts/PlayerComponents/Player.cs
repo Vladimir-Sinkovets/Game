@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Assets.Scripts.PlayerComponents
 {
-    public class Player : MonoBehaviour, IInitializable
+    public class Player : MonoBehaviour
     {
         [SerializeField] private int _hp = 100;
 
@@ -24,7 +24,7 @@ namespace Assets.Scripts.PlayerComponents
             _diContainer = diContainer;
         }
 
-        public void Initialize()
+        public void Init()
         {
             _abilities.Add(_diContainer.Instantiate<DefaultAttack>());
             _abilities.Add(_diContainer.Instantiate<RotatingAxes>());

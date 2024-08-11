@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Services.EnemySpawner;
+﻿using Assets.Scripts.PlayerComponents;
+using Assets.Scripts.Services.EnemySpawner;
 using Assets.Scripts.Services.PlayerLevelsManager;
 using Assets.Scripts.Services.UI.AbilityPanel;
 using Assets.Scripts.Services.UI.LevelCounter;
@@ -17,10 +18,13 @@ namespace Assets.Scripts
         [Inject] private readonly IProgressUI _progress;
         [Inject] private readonly ILevelCounterUI _levelCounterUI;
         [Inject] private readonly IAbilityPanelUI _panel;
+        [Inject] private readonly Player _player;
 
 
         public void Initialize()
         {
+            _player.Init();
+
             _levelManager.OnLevelChanged += _enemySpawner.SetLevel;
 
             _levelManager.OnExperienceChanged += _progress.SetValue;
