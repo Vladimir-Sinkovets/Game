@@ -6,6 +6,7 @@ using Assets.Scripts.Services.UI.EndingPanel;
 using Assets.Scripts.Services.UI.LevelCounter;
 using Assets.Scripts.Services.UI.Progress;
 using Assets.Scripts.Settings;
+using DG.Tweening;
 using System;
 using UnityEngine;
 using Zenject;
