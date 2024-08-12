@@ -11,7 +11,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.SceneMains
 {
     public class LevelMain : IInitializable, IDisposable
     {
