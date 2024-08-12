@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.PlayerComponents;
 using Assets.Scripts.UI.AbilityPanel;
+using Assets.Scripts.UIComponents;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
         public event Action OnSkillUpgraded;
 
         [SerializeField] private GameObject _panel;
+        [SerializeField] private UIPanelAnimation _panelAnimation;
         [SerializeField] private Transform _container;
 
         [Space]
@@ -47,7 +49,7 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
 
         public void Show()
         {
-            _panel.SetActive(true);
+            _panelAnimation?.PlayInAnimation();
 
             foreach (var button in _buttons)
             {
@@ -57,7 +59,7 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
 
         public void Hide()
         {
-            _panel.SetActive(false);
+            _panelAnimation?.PlayOutAnimation();
         }
     }
 }
