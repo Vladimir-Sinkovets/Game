@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Services.SceneManagement
 {
-    public class SceneManager : ILevelLoader
+    public class SceneManager : ILevelLoader, IMenuLoader
     {
         private readonly ZenjectSceneLoaderWrapper _wrapper;
 

@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.PlayerComponents;
 using Assets.Scripts.Services.EnemySpawner;
+using Assets.Scripts.Services.LevelUI;
 using Assets.Scripts.Services.PlayerLevelsManager;
+using Assets.Scripts.Services.SceneManagement;
 using Assets.Scripts.Services.UI.AbilityPanel;
 using Assets.Scripts.Services.UI.EndingPanel;
 using Assets.Scripts.Services.UI.LevelCounter;
@@ -20,13 +22,19 @@ namespace Assets.Scripts.SceneMains
         [Inject] private readonly ILevelCounterUI _levelCounterUI;
         [Inject] private readonly IAbilityPanelUI _panel;
         [Inject] private readonly IEndingPanelUI _endingPanel;
+        [Inject] private readonly ILevelUIEvents _uIEvents;
+        [Inject] private readonly IMenuLoader _menuLoader;
+
         [Inject] private readonly Player _player;
+
         [Inject(Id = BarId.Progress)] private readonly IBarUI _progress;
         [Inject(Id = BarId.Hp)] private readonly IBarUI _hpBar;
 
 
         public void Initialize()
         {
+            _uIEvents.OnMenuButtonClick += OnMenuButtonClickHandler;
+
             _player.Health.OnHpChanged += _hpBar.SetValue;
 
             _player.Health.OnHpEnded += OnPlayerDiedHandler;
@@ -46,6 +54,13 @@ namespace Assets.Scripts.SceneMains
             _panel.OnSkillUpgraded += HidePanel;
 
             _panel.Init();
+        }
+
+        private void OnMenuButtonClickHandler()
+        {
+            Time.timeScale = 1;
+
+            _menuLoader.LoadMenu();
         }
 
         private void OnPlayerDiedHandler()
@@ -74,6 +89,8 @@ namespace Assets.Scripts.SceneMains
 
         public void Dispose()
         {
+            _uIEvents.OnMenuButtonClick -= OnMenuButtonClickHandler;
+
             _player.Health.OnHpChanged -= _hpBar.SetValue;
 
             _player.Health.OnHpEnded -= OnPlayerDiedHandler;

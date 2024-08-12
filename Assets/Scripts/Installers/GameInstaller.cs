@@ -2,7 +2,9 @@ using Assets.Scripts.PlayerComponents;
 using Assets.Scripts.SceneMains;
 using Assets.Scripts.Services.EnemyEvents;
 using Assets.Scripts.Services.EnemySpawner;
+using Assets.Scripts.Services.LevelUI;
 using Assets.Scripts.Services.PlayerLevelsManager;
+using Assets.Scripts.Services.SceneManagement;
 using Assets.Scripts.Services.UI.AbilityPanel;
 using Assets.Scripts.Services.UI.EndingPanel;
 using Assets.Scripts.Services.UI.LevelCounter;
@@ -20,6 +22,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private LevelCounterUI _levelCounter;
     [SerializeField] private AbilityPanelUI _panel;
     [SerializeField] private EndingPanelUI _endingPanel;
+    [SerializeField] private LevelUIEvents _uiEvents;
     [SerializeField] private BarUI _progressBar;
     [SerializeField] private BarUI _hpBar;
     [Space]
@@ -58,6 +61,10 @@ public class GameInstaller : MonoInstaller
         Container.Bind<IEnemyEventBus>()
             .To<EnemyEventBus>()
             .AsSingle();
+
+        Container.Bind<IMenuLoader>()
+            .To<SceneManager>()
+            .AsTransient();
     }
 
     private void BindSettings()
@@ -98,5 +105,9 @@ public class GameInstaller : MonoInstaller
         Container.Bind<ILevelCounterUI>()
             .To<LevelCounterUI>()
             .FromInstance(_levelCounter);
+
+        Container.Bind<ILevelUIEvents>()
+            .To<LevelUIEvents>()
+            .FromInstance(_uiEvents);
     }
 }
