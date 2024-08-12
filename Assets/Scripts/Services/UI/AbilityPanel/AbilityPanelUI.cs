@@ -51,9 +51,12 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
         {
             _panelAnimation?.PlayInAnimation();
 
+            var panelAnimationDuration = _panelAnimation.Duration;
+
             foreach (var button in _buttons)
             {
                 button.UpdateButton();
+                button.PlayAnimation(delay: panelAnimationDuration);
             }
         }
 
