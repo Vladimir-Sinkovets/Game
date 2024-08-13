@@ -15,8 +15,6 @@ namespace Assets.Scripts.UI.AbilityPanel
         [SerializeField] private TMP_Text _text;
         [SerializeField] private Button _button;
         private IAbility _ability;
-        [Space]
-        [SerializeField] private float _animationDuration;
 
         public void Init(IAbility ability)
         {
@@ -35,15 +33,5 @@ namespace Assets.Scripts.UI.AbilityPanel
         }
 
         public void Click() => OnClick?.Invoke();
-
-        public void PlayAnimation(float delay)
-        {
-            transform.localScale = Vector3.zero;
-
-            transform.DOScale(1, _animationDuration)
-                .SetEase(Ease.OutElastic)
-                .SetUpdate(true)
-                .SetDelay(delay);
-        }
     }
 }

@@ -44,6 +44,8 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
                 button.Init(ability);
 
                 _buttons.Add(button);
+
+                _panelAnimation.AddItem(button.transform);
             }
         }
 
@@ -56,7 +58,6 @@ namespace Assets.Scripts.Services.UI.AbilityPanel
             foreach (var button in _buttons)
             {
                 button.UpdateButton();
-                button.PlayAnimation(delay: panelAnimationDuration);
             }
         }
 

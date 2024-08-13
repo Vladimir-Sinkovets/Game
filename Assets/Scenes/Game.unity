@@ -264,10 +264,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664142d1a476e3049b0027115c2cffd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 0.5
+  _duration: 0.5
   _from: {x: 0, y: 4000}
   _inFunction: 18
   _outFunction: 17
+  _items: []
+  _itemInFunction: 5
+  _itemAnimationDuration: 0.1
 --- !u!1 &166771041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,7 +1780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a17ab225e59e54fb1f9c827e1f0a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 1000
+  _hp: 1
   _health: {fileID: 1064364344}
 --- !u!114 &1064364344
 MonoBehaviour:
@@ -2448,10 +2451,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664142d1a476e3049b0027115c2cffd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 0.5
+  _duration: 0.5
   _from: {x: 0, y: -4000}
   _inFunction: 25
   _outFunction: 25
+  _items:
+  - {fileID: 943527485}
+  - {fileID: 1160345449}
+  _itemInFunction: 24
+  _itemAnimationDuration: 0.3
 --- !u!1 &1526635970
 GameObject:
   m_ObjectHideFlags: 0
